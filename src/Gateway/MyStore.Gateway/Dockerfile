@@ -15,7 +15,7 @@ WORKDIR /src/Gateway/MyStore.Gateway
 RUN dotnet build "MyStore.Gateway.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish ${project} -c Release -o /app/publish
+RUN dotnet publish "MyStore.Gateway.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

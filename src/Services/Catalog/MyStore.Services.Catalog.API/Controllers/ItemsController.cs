@@ -5,11 +5,6 @@ namespace MyStore.Services.Catalog.API.Controllers
     [Route("items")]
     public class ItemsController : ControllerBase
     {
-        public ItemsController()
-        {
-
-        }
-
         [HttpGet]
         public IActionResult Get()
         {
