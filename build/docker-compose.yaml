@@ -1,6 +1,17 @@
 version: '3.5'
 
-services:  
+services:
+  consul-server:
+    image: hashicorp/consul:latest
+    container_name: consul-server
+    networks:
+      - bridge
+    ports:
+      - "8500:8500"
+      - "8600:8600/tcp"
+      - "8600:8600/udp"
+    # command: "agent"
+
   gateway:
     image: gateway:latest
     container_name: gateway
