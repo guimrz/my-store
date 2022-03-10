@@ -10,11 +10,14 @@ WORKDIR /src
 COPY ["Gateway/MyStore.Gateway/MyStore.Gateway.csproj", "Gateway/MyStore.Gateway/"]
 RUN dotnet restore "Gateway/MyStore.Gateway/MyStore.Gateway.csproj"
 COPY . .
-WORKDIR "/src/Gateway/MyStore.Gateway"
-RUN dotnet build "MyStore.Gateway.csproj" -c Release -o /app/build
+
+ENV project "MyStore.Gateway.csproj"
+
+WORKDIR /src/Gateway/MyStore.Gateway
+RUN dotnet build ${project} -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MyStore.Gateway.csproj" -c Release -o /app/publish
+RUN dotnet publish ${project} -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
