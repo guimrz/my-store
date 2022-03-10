@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notificati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{3F126EB3-9B01-426C-8EB6-5328C8DEC879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.Gateway", "Gateway\MyStore.Gateway\MyStore.Gateway.csproj", "{3CEEB0EC-2083-469A-8C6B-98F52EDC2DF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Gateway", "Gateway\MyStore.Gateway\MyStore.Gateway.csproj", "{3CEEB0EC-2083-469A-8C6B-98F52EDC2DF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{DC6EC959-1720-4E9D-A263-27472C935E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{26AD6555-ED46-43FD-A164-AE24E06D40BF} = {1DC12FB3-A925-43E8-9823-009F60A37146}
 		{3CEEB0EC-2083-469A-8C6B-98F52EDC2DF5} = {3F126EB3-9B01-426C-8EB6-5328C8DEC879}
+		{DC6EC959-1720-4E9D-A263-27472C935E49} = {1DC12FB3-A925-43E8-9823-009F60A37146}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60173DB3-E10B-4EAD-8745-3ED58516D5A0}

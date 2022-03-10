@@ -22,6 +22,7 @@ services:
       - corp
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceDiscoveryProvider__Host=consul-server
     expose: 
       - '80'
     ports: 
