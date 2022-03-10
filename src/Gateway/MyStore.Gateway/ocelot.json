@@ -1,4 +1,33 @@
 ﻿{
-  "Routes": [    
-  ]
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/items",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalog-service",    
+      "UpstreamPathTemplate": "/api/items",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "DownstreamPathTemplate": "/items/{itemId}",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalog-service",
+      "UpstreamPathTemplate": "/api/items/{itemId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Scheme": "http",
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    },
+    "LoadBalancerOptions": {
+      "Type": "LeastConnection",
+      "Key": null,
+      "Expiry": 0
+    }
+  }  
 }
