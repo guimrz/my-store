@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:  
+  gateway:
+    image: gateway:latest
+    container_name: gateway
+    build: 
+      context: ../src/
+      dockerfile: Gateway/MyStore.Gateway/Dockerfile
+    networks: 
+      - corp
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    expose: 
+      - '80'
+    ports: 
+      - "60000:80"
+
+networks:
+  corp:
+    driver: "bridge"
