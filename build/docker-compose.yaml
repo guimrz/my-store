@@ -1,20 +1,21 @@
 version: '3.5'
 
 services:
-  consul-server:
+  consul_server:
     image: hashicorp/consul:latest
-    container_name: consul-server
+    container_name: consul_server
     networks:
-      - bridge
+      - corp
     ports:
       - "8500:8500"
       - "8600:8600/tcp"
       - "8600:8600/udp"
-    # command: "agent"
 
   gateway:
     image: gateway:latest
     container_name: gateway
+    depends_on:
+      - consul_server
     build: 
       context: ../src/
       dockerfile: Gateway/MyStore.Gateway/Dockerfile
@@ -22,11 +23,34 @@ services:
       - corp
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
-      - ServiceDiscoveryProvider__Host=consul-server
+      - GlobalConfiguration__ServiceDiscoveryProvider__Host=consul_server
+      - GlobalConfiguration__ServiceDiscoveryProvider__Scheme=http
+      - GlobalConfiguration__ServiceDiscoveryProvider__Port=8500
     expose: 
       - '80'
     ports: 
       - "60000:80"
+
+# Services
+  catalog_service:
+    image: catalog:latest
+    container_name: catalog_service
+    depends_on:
+      - consul_server
+    build: 
+      context: ../src/
+      dockerfile: Services/Catalog/MyStore.Services.Catalog.API/Dockerfile
+    networks: 
+      - corp
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ServiceDiscovery__Address=catalog_service
+      - ServiceDiscovery__Port=80
+      - ServiceDiscovery__Consul__Address=http://consul_server:8500
+    expose: 
+      - '80'
+    ports: 
+      - "60011:80"
 
 networks:
   corp:
