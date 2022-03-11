@@ -10,7 +10,11 @@ namespace MyStore.Services.Catalog.Domain
 
         public Guid Id { get; protected set; }
 
-        public string Name { get; set; }
+        public string Name { get; protected set; }
+
+        public string SmallDescription { get; set; }
+
+        public string FullDescription { get; set; }
 
         public DateTime CreationDate { get; protected set; }
 
@@ -24,10 +28,13 @@ namespace MyStore.Services.Catalog.Domain
             _categories = new List<BrandCategory>();
         }
 
-        public Brand(string name) : this()
+        public Brand(string name, string smallDescription = null, string fullDescription = null) : this()
         {
             Name = name;
             CreationDate = DateTime.UtcNow;
+
+            SmallDescription = smallDescription;
+            FullDescription = fullDescription;
         }
 
         public void AddCategory(Category category)

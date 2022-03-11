@@ -14,10 +14,6 @@ namespace MyStore.Services.Catalog.Domain
 
         public Guid BrandId { get; set; }
 
-        public int ProductTypeId { get; set; }
-
-        public int UnitTypeId { get; set; }
-
         public string ShortDescription { get; set; }
 
         public string FullDescription { get; set; }
