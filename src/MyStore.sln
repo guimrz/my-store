@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Services.Catalog.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Services.Catalog.Application", "Services\Catalog\MyStore.Services.Catalog.Application\MyStore.Services.Catalog.Application.csproj", "{F0072929-9424-4C6D-9675-20BF0A47F1FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.Core.EntityFrameworkCore", "Core\MyStore.Core.EntityFrameworkCore\MyStore.Core.EntityFrameworkCore.csproj", "{3A9FB718-277C-4E62-97EF-EED66CC59636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Core.EntityFrameworkCore", "Core\MyStore.Core.EntityFrameworkCore\MyStore.Core.EntityFrameworkCore.csproj", "{3A9FB718-277C-4E62-97EF-EED66CC59636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.Core.EntityFrameworkCore.SqlServer", "Core\MyStore.Core.EntityFrameworkCore.SqlServer\MyStore.Core.EntityFrameworkCore.SqlServer.csproj", "{35F5E779-A320-440E-85DB-E7232E343B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{3A9FB718-277C-4E62-97EF-EED66CC59636}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A9FB718-277C-4E62-97EF-EED66CC59636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A9FB718-277C-4E62-97EF-EED66CC59636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F5E779-A320-440E-85DB-E7232E343B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F5E779-A320-440E-85DB-E7232E343B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F5E779-A320-440E-85DB-E7232E343B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F5E779-A320-440E-85DB-E7232E343B04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{822AF956-4C49-492C-8603-E2A1FAC41EB8} = {DC6EC959-1720-4E9D-A263-27472C935E49}
 		{F0072929-9424-4C6D-9675-20BF0A47F1FE} = {DC6EC959-1720-4E9D-A263-27472C935E49}
 		{3A9FB718-277C-4E62-97EF-EED66CC59636} = {DA8B4717-2C70-4044-82F3-643A7EB1007C}
+		{35F5E779-A320-440E-85DB-E7232E343B04} = {DA8B4717-2C70-4044-82F3-643A7EB1007C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60173DB3-E10B-4EAD-8745-3ED58516D5A0}
