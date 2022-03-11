@@ -2,17 +2,17 @@
 
 namespace MyStore.Services.Catalog.API.Controllers
 {
-    [Route("items")]
-    public class ItemsController : ControllerBase
+    [Route("categories")]
+    public class CategoriesController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetCategories()
         {
             throw new NotImplementedException();
         }
 
-        [HttpGet("{itemId:guid}")]
-        public IActionResult Get(Guid itemId)
+        [HttpPost]
+        public IActionResult CreateCategory()
         {
             throw new NotImplementedException();
         }
