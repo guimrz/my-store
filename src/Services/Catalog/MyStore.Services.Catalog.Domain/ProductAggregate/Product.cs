@@ -16,6 +16,8 @@ namespace MyStore.Services.Catalog.Domain
 
         public int ProductTypeId { get; set; }
 
+        public int UnitTypeId { get; set; }
+
         public string ShortDescription { get; set; }
 
         public string FullDescription { get; set; }
@@ -28,10 +30,10 @@ namespace MyStore.Services.Catalog.Domain
 
         public IEnumerable<ProductCategory> Categories { get; protected set; }
 
+        public decimal Price { get; set; }
+
         #region Navigation properties
         public Brand Brand { get; set; }
-
-        public ProductType ProductType { get; set; }
         #endregion
 
         // Used by EF Core
@@ -40,11 +42,17 @@ namespace MyStore.Services.Catalog.Domain
             _categories = new List<ProductCategory>();
         }
 
-        public Product(string name, string sku, Brand brand, ProductType productType, string shortDescription = null, string fullDescription = null) : this()
+        public Product(string name, string sku, decimal price, Brand brand, string shortDescription = null, string fullDescription = null) : this()
         {
             Name = string.IsNullOrWhiteSpace(name) ? throw new ArgumentException($"The value cannot be null, empty or whitespace.", nameof(name)) : name;
             Brand = brand ?? throw new ArgumentNullException(nameof(brand));
-            ProductType = productType ?? throw new ArgumentNullException(nameof(productType));
+
+            if (price < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(price), "The value cannot be less than zero.");
+            }
+
+            Price = price;
 
             Sku = sku;
             ShortDescription = shortDescription;
