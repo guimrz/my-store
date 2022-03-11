@@ -1,6 +1,20 @@
 version: '3.5'
 
 services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest 
+    container_name: sqlserver
+    environment: 
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "r00t.R00T"
+    networks: 
+      - corp
+    restart: unless-stopped
+    expose: 
+      - '1433'
+    ports:
+      - "60001:1433"
+      
   consul_server:
     image: hashicorp/consul:latest
     container_name: consul_server
