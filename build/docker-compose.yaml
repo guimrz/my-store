@@ -61,6 +61,7 @@ services:
       - ServiceDiscovery__Address=catalog_service
       - ServiceDiscovery__Port=80
       - ServiceDiscovery__Consul__Address=http://consul_server:8500
+      - ConnectionStrings__DefaultConnection=Data Source=sqlserver;Initial Catalog=master_Broker;User ID=SA;Password=r00t.R00T
     expose: 
       - '80'
     ports: 

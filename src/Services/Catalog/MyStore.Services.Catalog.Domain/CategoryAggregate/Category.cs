@@ -5,7 +5,9 @@ namespace MyStore.Services.Catalog.Domain.CategoryAggregate
     {
         public Guid Id { get; protected set; }
 
-        public string Name { get; set; }
+        public string Name { get; protected set; }
+
+        public string Description { get; set; }
 
         public DateTime CreationDate { get; protected set; }
 
@@ -16,10 +18,12 @@ namespace MyStore.Services.Catalog.Domain.CategoryAggregate
             // Used by EF Core
         }
 
-        public Category(string name)
+        public Category(string name, string description = null)
         {
             Name = string.IsNullOrWhiteSpace(name) ? throw new ArgumentException("The value cannot be null, empty or whitespaces.", nameof(name)) : name;
             CreationDate = DateTime.UtcNow;
+
+            Description = description;
         }
     }
 }
