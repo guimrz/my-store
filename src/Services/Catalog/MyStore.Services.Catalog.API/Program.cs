@@ -2,12 +2,13 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MyStore.Core.EntityFrameworkCore.Extensions;
 using MyStore.Core.EntityFrameworkCore.SqlServer.Extensions;
+using MyStore.Core.Mvc.Extensions;
+using MyStore.Core.Mvc.Middlewares;
 using MyStore.Core.ServiceDiscovery.Consul.Extensions;
 using MyStore.Core.ServiceDiscovery.Extensions;
-using MyStore.Services.Catalog.Application.Handlers;
-using MyStore.Services.Catalog.Application.Mapping;
 using MyStore.Services.Catalog.Repository;
 using MyStore.Services.Catalog.Repository.Abstractions;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,10 +31,13 @@ builder.Services.TryAddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.TryAddScoped<IProductsRepository, ProductsRepository>();
 
 // Configure mapping
-builder.Services.AddAutoMapper(config => config.AddProfiles(MappingConfiguration.GetProfiles()));
+builder.Services.AddAutoMapper(config => config.AddMaps(Assembly.Load("MyStore.Services.Catalog.Application")));
 
 // Configure MediatR
-builder.Services.AddMediatR(typeof(CreateCategoryCommandHandler).Assembly);
+builder.Services.AddMediatR(Assembly.Load("MyStore.Services.Catalog.Application"));
+
+// Configure request validation
+builder.Services.AddRequestValidation(Assembly.Load("MyStore.Services.Catalog.Application"));
 
 var app = builder.Build();
 
@@ -45,6 +49,9 @@ if (app.Environment.IsDevelopment())
 }
 
 await app.MigrateDatabaseAsync<CatalogDbContext>();
+
+// Configure middlewares
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

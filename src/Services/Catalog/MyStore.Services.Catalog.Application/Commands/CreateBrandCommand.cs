@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using MyStore.Services.Catalog.Application.Responses.Brands;
 
 namespace MyStore.Services.Catalog.Application.Commands
@@ -12,5 +13,13 @@ namespace MyStore.Services.Catalog.Application.Commands
         public string? FullDescription { get; set; }
 
         public Guid[]? Categories { get; set; }
+    }
+
+    public class CreateBrandCommandValidator : AbstractValidator<CreateBrandCommand>
+    {
+        public CreateBrandCommandValidator()
+        {
+            RuleFor(p => p.Name).NotEmpty().MaximumLength(64);
+        }
     }
 }
