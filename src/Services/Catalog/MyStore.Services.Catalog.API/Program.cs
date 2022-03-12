@@ -1,8 +1,11 @@
+using MediatR;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MyStore.Core.EntityFrameworkCore.Extensions;
 using MyStore.Core.EntityFrameworkCore.SqlServer.Extensions;
 using MyStore.Core.ServiceDiscovery.Consul.Extensions;
 using MyStore.Core.ServiceDiscovery.Extensions;
+using MyStore.Services.Catalog.Application.Handlers;
+using MyStore.Services.Catalog.Application.Mapping;
 using MyStore.Services.Catalog.Repository;
 using MyStore.Services.Catalog.Repository.Abstractions;
 
@@ -25,6 +28,12 @@ builder.Services.AddSqlDatabase<CatalogDbContext>(builder.Configuration);
 builder.Services.TryAddScoped<IBrandsRepository, BrandsRepository>();
 builder.Services.TryAddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.TryAddScoped<IProductsRepository, ProductsRepository>();
+
+// Configure mapping
+builder.Services.AddAutoMapper(config => config.AddProfiles(ConfigurationUtils.GetProfiles()));
+
+// Configure MediatR
+builder.Services.AddMediatR(typeof(CreateCategoryCommandHandler).Assembly);
 
 var app = builder.Build();
 

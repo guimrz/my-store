@@ -65,7 +65,9 @@ namespace MyStore.Services.Catalog.Domain
         public void Add(Category category)
         {
             if (category == null)
+            {
                 throw new ArgumentNullException(nameof(category));
+            }
 
             _categories.Add(new ProductCategory(this.Id, category.Id));
         }

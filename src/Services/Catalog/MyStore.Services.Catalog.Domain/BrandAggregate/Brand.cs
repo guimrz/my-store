@@ -40,7 +40,9 @@ namespace MyStore.Services.Catalog.Domain
         public void AddCategory(Category category)
         {
             if (category == null)
+            {
                 throw new ArgumentNullException(nameof(category));
+            }
 
             _categories.Add(new BrandCategory(this.Id, category.Id));
         }
