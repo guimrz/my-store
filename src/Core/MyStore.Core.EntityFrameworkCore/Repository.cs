@@ -10,7 +10,7 @@ namespace MyStore.Core.EntityFrameworkCore
 
         public IQueryable<TEntity> All => _dbContext.Set<TEntity>().AsNoTracking();
 
-        public Repository(DbContext dbContext)
+        protected Repository(DbContext dbContext)
         {
             _dbContext = dbContext?? throw new ArgumentNullException(nameof(dbContext));
         }

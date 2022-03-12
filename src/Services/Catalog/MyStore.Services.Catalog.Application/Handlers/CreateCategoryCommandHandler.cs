@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MyStore.Services.Catalog.Application.Commands;
-using MyStore.Services.Catalog.Application.Responses;
+using MyStore.Services.Catalog.Application.Responses.Categories;
 using MyStore.Services.Catalog.Domain.CategoryAggregate;
 using MyStore.Services.Catalog.Repository.Abstractions;
 

@@ -30,7 +30,7 @@ builder.Services.TryAddScoped<ICategoriesRepository, CategoriesRepository>();
 builder.Services.TryAddScoped<IProductsRepository, ProductsRepository>();
 
 // Configure mapping
-builder.Services.AddAutoMapper(config => config.AddProfiles(ConfigurationUtils.GetProfiles()));
+builder.Services.AddAutoMapper(config => config.AddProfiles(MappingConfiguration.GetProfiles()));
 
 // Configure MediatR
 builder.Services.AddMediatR(typeof(CreateCategoryCommandHandler).Assembly);

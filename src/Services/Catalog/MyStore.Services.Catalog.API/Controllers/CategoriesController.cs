@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyStore.Services.Catalog.Application.Commands;
-using MyStore.Services.Catalog.Application.Responses;
+using MyStore.Services.Catalog.Application.Responses.Categories;
 
 namespace MyStore.Services.Catalog.API.Controllers
 {

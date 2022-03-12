@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using MyStore.Services.Catalog.Domain.BrandAggregate;
 using MyStore.Services.Catalog.Domain.CategoryAggregate;
 using MyStore.Services.Catalog.Domain.ProductAggregate;
 

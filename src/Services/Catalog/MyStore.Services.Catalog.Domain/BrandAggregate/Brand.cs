@@ -1,8 +1,8 @@
 ﻿#nullable disable
-using MyStore.Services.Catalog.Domain.BrandAggregate;
+using MyStore;
 using MyStore.Services.Catalog.Domain.CategoryAggregate;
 
-namespace MyStore.Services.Catalog.Domain
+namespace MyStore.Services.Catalog.Domain.BrandAggregate
 {
     public class Brand
     {
@@ -12,7 +12,7 @@ namespace MyStore.Services.Catalog.Domain
 
         public string Name { get; protected set; }
 
-        public string SmallDescription { get; set; }
+        public string ShortDescription { get; set; }
 
         public string FullDescription { get; set; }
 
@@ -28,12 +28,12 @@ namespace MyStore.Services.Catalog.Domain
             _categories = new List<BrandCategory>();
         }
 
-        public Brand(string name, string smallDescription = null, string fullDescription = null) : this()
+        public Brand(string name, string shortDescription = null, string fullDescription = null) : this()
         {
             Name = name;
             CreationDate = DateTime.UtcNow;
 
-            SmallDescription = smallDescription;
+            ShortDescription = shortDescription;
             FullDescription = fullDescription;
         }
 

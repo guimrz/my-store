@@ -5,7 +5,7 @@ using System.Reflection;
 #nullable disable
 namespace MyStore.Services.Catalog.Application.Mapping
 {
-    public static class ConfigurationUtils
+    public static class MappingConfiguration
     {
         public static IEnumerable<Profile> GetProfiles()
         {
