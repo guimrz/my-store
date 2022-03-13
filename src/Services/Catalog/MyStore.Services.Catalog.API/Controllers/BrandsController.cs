@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MyStore.Services.Catalog.Application.Commands;
+using MyStore.Services.Catalog.Application.Commands.Queries;
 using MyStore.Services.Catalog.Application.Responses.Brands;
 
 namespace MyStore.Services.Catalog.API.Controllers
@@ -16,9 +17,12 @@ namespace MyStore.Services.Catalog.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBrands()
+        [ProducesResponseType(typeof(BrandResponse[]), 200)]
+        public async Task<IActionResult> GetBrands([FromQuery]GetBrandsQuery query)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(query);
+
+            return new ObjectResult(result);
         }
 
         [HttpPost]
