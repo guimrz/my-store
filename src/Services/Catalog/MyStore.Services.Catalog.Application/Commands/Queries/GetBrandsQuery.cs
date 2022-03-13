@@ -8,7 +8,7 @@ namespace MyStore.Services.Catalog.Application.Commands.Queries
     {
         public int Count { get; set; } = 20;
 
-        public int Offset { get; set; } = 0;
+        public int Offset { get; set; }
 
         public Guid[]? Categories { get; set; }
     }

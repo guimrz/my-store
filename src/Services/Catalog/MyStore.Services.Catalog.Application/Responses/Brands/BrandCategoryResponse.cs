@@ -8,7 +8,5 @@ namespace MyStore.Services.Catalog.Application.Responses.Brands
         public string Name { get; set; }
 
         public string Description { get; set; }
-
-        public DateTime CreationDate { get; set; }
     }
 }

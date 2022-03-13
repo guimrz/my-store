@@ -21,16 +21,16 @@ namespace MyStore.Services.Catalog.Application.Handlers.Queries
 
         public Task<IEnumerable<BrandResponse>> Handle(GetBrandsQuery request, CancellationToken cancellationToken)
         {
-            IQueryable<Brand> categories = _brandsRepository.All
+            IQueryable<Brand> brands = _brandsRepository.All
                 .Include(p => p.Categories)
                     .ThenInclude(p => p.Category);
 
             if(request.Categories != null && request.Categories.Any())
             {
-                categories = categories.Where(p => p.Categories.Any(p => request.Categories.Distinct().Contains(p.CategoryId)));
+                brands = brands.Where(p => p.Categories.Any(p => request.Categories.Distinct().Contains(p.CategoryId)));
             }
 
-            return Task.FromResult(_mapper.Map<IEnumerable<BrandResponse>>(categories.Skip(request.Offset).Take(request.Count)));
+            return Task.FromResult(_mapper.Map<IEnumerable<BrandResponse>>(brands.Skip(request.Offset).Take(request.Count)));
         }
     }
 }
