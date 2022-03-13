@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Responses\Products\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MyStore.Services.Catalog.Domain\MyStore.Services.Catalog.Domain.csproj" />
     <ProjectReference Include="..\MyStore.Services.Catalog.Repository\MyStore.Services.Catalog.Repository.csproj" />
   </ItemGroup>

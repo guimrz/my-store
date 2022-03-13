@@ -20,7 +20,6 @@ namespace MyStore.Services.Catalog.Application.Mapping.Profiles
                     map.PreCondition(source => source.Category != null);
                     map.MapFrom(source => source.Category.Description);
                 })
-                .ForMember(destination => destination.CreationDate, map => map.MapFrom(source => source.CreationDate))
                 .ForMember(destination => destination.CategoryId, map => map.MapFrom(source => source.CategoryId));
         }
     }

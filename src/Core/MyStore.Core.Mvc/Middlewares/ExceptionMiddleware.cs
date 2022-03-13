@@ -31,8 +31,12 @@ namespace MyStore.Core.Mvc.Middlewares
             HttpStatusCode code;
             ErrorResponse error = new ErrorResponse();
 
-           
-            if (exception is ValidationException)
+            if(exception is NotFoundException)
+            {
+                error.Message = exception.Message ?? "The entity could not be found.";
+                code = HttpStatusCode.NotFound;
+            }
+            else if (exception is ValidationException)
             {
                 error.Message = "The request model is invalid.";
                 error.Content = (exception as ValidationException)?.Errors;
