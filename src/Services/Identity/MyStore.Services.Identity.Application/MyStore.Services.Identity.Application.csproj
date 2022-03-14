@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Mapping\" />
+    <Folder Include="Responses\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyStore.Services.Identity.Domain\MyStore.Services.Identity.Domain.csproj" />
+    <ProjectReference Include="..\MyStore.Services.Identity.Repository\MyStore.Services.Identity.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
