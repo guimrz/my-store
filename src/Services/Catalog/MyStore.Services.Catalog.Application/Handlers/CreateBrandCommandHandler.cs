@@ -31,7 +31,7 @@ namespace MyStore.Services.Catalog.Application.Handlers
 
                 foreach (var category in categories)
                 {
-                    brand.AddCategory(category);
+                    brand.Add(category);
                 }
             }
 
@@ -42,7 +42,7 @@ namespace MyStore.Services.Catalog.Application.Handlers
             brand = await _brandsRepository.All
                 .Include(p => p.Categories)
                     .ThenInclude(p => p.Category)
-                .FirstAsync(p => p.Id == brand.Id);
+                .SingleAsync(p => p.Id == brand.Id);
 
             return _mapper.Map<BrandResponse>(brand);
         }

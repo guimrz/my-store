@@ -37,7 +37,7 @@ namespace MyStore.Services.Catalog.Domain.BrandAggregate
             FullDescription = fullDescription;
         }
 
-        public void AddCategory(Category category)
+        public void Add(Category category)
         {
             if (category == null)
             {
