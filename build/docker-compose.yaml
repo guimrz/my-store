@@ -46,6 +46,22 @@ services:
       - "60000:80"
 
 # Services
+  identity_service:
+    image: identity_service:latest
+    container_name: identity_service
+    build: 
+      context: ../src/
+      dockerfile: Services/Identity/MyStore.Services.Identity.API/Dockerfile
+    networks: 
+      - corp
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Data Source=sqlserver;Initial Catalog=master_Identity;User ID=SA;Password=r00t.R00T
+    expose: 
+      - '80'
+    ports: 
+      - "60010:80"
+
   catalog_service:
     image: catalog:latest
     container_name: catalog_service
