@@ -1,0 +1,45 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/products",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalog-service",
+      "UpstreamPathTemplate": "/api/products",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "DownstreamPathTemplate": "/producs/{productId}",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalog-service",
+      "UpstreamPathTemplate": "/api/products/{productId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "DownstreamPathTemplate": "/categories",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalog-service",
+      "UpstreamPathTemplate": "/api/categories",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ],
+      "ReRoutesCaseSensitive": false
+    },
+    {
+      "DownstreamPathTemplate": "/brands",
+      "DownstreamScheme": "http",
+      "ServiceName": "catalog-service",
+      "UpstreamPathTemplate": "/api/brands",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ],
+      "ReRoutesCaseSensitive": false
+    }
+  ]
+}
