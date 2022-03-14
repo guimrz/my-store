@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MyStore.Web.Administration.App.Models.Categories.CategoryViewModel>
+
+@{
+	ViewData["Title"] = "Categories";
+}
+
+<h1 class="display-4">Categories</h1>
+
+
+<p class="text-end">
+	<a class="btn btn-success" asp-action="Create"><i class="bi-plus"></i></a>
+</p>
+<table class="table table-sm caption-top">
+	<caption>List of categories</caption>
+	<thead>
+		<tr>			
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>				
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td class="text-end">
+					<a class="btn btn-primary btn-sm disabled" asp-action="Details"><i class="bi-info-square"></i> Details</a>
+					<a class="btn btn-warning btn-sm disabled" asp-action="Update"><i class="bi-pencil"></i> Update</a>
+					<a class="btn btn-danger btn-sm disabled" asp-action="Details"><i class="bi-trash"></i> Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

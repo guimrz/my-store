@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Administration", "Administr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Store", "Store", "{C511AC24-C37D-4D25-9CBA-3162BD9C231B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyStore.Web.Administration.App", "Web\Administration\MyStore.Web.Administration.App\MyStore.Web.Administration.App.csproj", "{60823D83-7DDC-439C-9EB0-23EC937F871A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyStore.Web.Administration.App", "Web\Administration\MyStore.Web.Administration.App\MyStore.Web.Administration.App.csproj", "{60823D83-7DDC-439C-9EB0-23EC937F871A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
