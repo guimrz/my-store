@@ -7,7 +7,7 @@ using MyStore.Services.Catalog.Application.Responses.Categories;
 
 namespace MyStore.Services.Catalog.API.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "ApiScope")]
     [Route("categories")]
     public class CategoriesController : ControllerBase
     {

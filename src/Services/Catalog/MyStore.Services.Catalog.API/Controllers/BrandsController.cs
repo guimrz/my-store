@@ -7,7 +7,7 @@ using MyStore.Services.Catalog.Application.Responses.Brands;
 
 namespace MyStore.Services.Catalog.API.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "ApiScope")]
     [Route("brands")]
     public class BrandsController : ControllerBase
     {

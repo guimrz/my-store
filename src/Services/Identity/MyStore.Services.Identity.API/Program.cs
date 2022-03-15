@@ -6,7 +6,6 @@ using MyStore.Core.EntityFrameworkCore.SqlServer.Extensions;
 using MyStore.Services.Identity.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using Duende.IdentityServer.EntityFramework.DbContexts;
 
 Log.Logger = new LoggerConfiguration()
@@ -42,6 +41,7 @@ try
 
             // see https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/
             options.EmitStaticAudienceClaim = true;
+            options.IssuerUri = "http://identity_service";
         })
         .AddConfigurationStore(options => 
         {

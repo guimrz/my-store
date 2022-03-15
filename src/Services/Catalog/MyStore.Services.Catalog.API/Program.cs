@@ -64,6 +64,9 @@ try
     // Configure request validation
     builder.Services.AddRequestValidation(Assembly.Load("MyStore.Services.Catalog.Application"));
 
+    // Configure health checks
+    builder.Services.AddHealthChecks();
+
     // Configure authentication
     builder.Services.AddAuthentication("Bearer")
         .AddJwtBearer("Bearer", options =>
@@ -71,10 +74,9 @@ try
             options.Authority = "http://identity_service";
             options.RequireHttpsMetadata = false;
 
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateAudience = false
-            };
+            options.TokenValidationParameters.ValidateAudience = false;
+            options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+
         });
 
     // Configure authorization
@@ -86,9 +88,6 @@ try
             policy.RequireClaim("scope", "catalog");
         });
     });
-
-    // Configure health checks
-    builder.Services.AddHealthChecks();
 
     var app = builder.Build();
 
@@ -115,8 +114,7 @@ try
     // Configure health checks
     app.UseHealthChecks("/health/status");
 
-    app.MapControllers()
-        .RequireAuthorization("ApiScope");
+    app.MapControllers();
 
     app.Run();
 }

@@ -7,7 +7,7 @@ using MyStore.Services.Catalog.Application.Responses.Products;
 
 namespace MyStore.Services.Catalog.API.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "ApiScope")]
     [Route("products")]
     public class ProductsController : ControllerBase
     {
