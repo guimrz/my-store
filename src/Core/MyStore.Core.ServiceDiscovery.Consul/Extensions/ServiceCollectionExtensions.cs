@@ -31,10 +31,10 @@ namespace MyStore.Core.ServiceDiscovery.Consul.Extensions
                     {
                         new AgentCheckRegistration
                         {
-                            HTTP = $"{serviceDiscoveryOptions?.Address}/api/health/status",
+                            HTTP = $"http://{serviceDiscoveryOptions?.Address}:{serviceDiscoveryOptions?.Port}/health/status",
                             Notes = "Checks /health/status",
                             Timeout = TimeSpan.FromSeconds(3),
-                            Interval = TimeSpan.FromSeconds(10)
+                            Interval = TimeSpan.FromSeconds(30)
                         }
                     }
                 };

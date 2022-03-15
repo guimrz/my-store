@@ -6,7 +6,7 @@ namespace MyStore.Services.Identity.Repository
 {
     public class IdentityDbContext : IdentityDbContext<ApplicationUser>
     {
-        public IdentityDbContext(DbContextOptions options) : base(options)
+        public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(options)
         {
             //
         }

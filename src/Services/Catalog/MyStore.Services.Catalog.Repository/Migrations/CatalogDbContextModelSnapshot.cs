@@ -84,11 +84,6 @@ namespace MyStore.Services.Catalog.Repository.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(64)

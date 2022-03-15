@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyStore.Services.Catalog.Application.Commands;
 using MyStore.Services.Catalog.Application.Commands.Queries;
@@ -6,6 +7,7 @@ using MyStore.Services.Catalog.Application.Responses.Brands;
 
 namespace MyStore.Services.Catalog.API.Controllers
 {
+    [Authorize]
     [Route("brands")]
     public class BrandsController : ControllerBase
     {

@@ -14,8 +14,8 @@ namespace MyStore.Services.Identity.API
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-            new ApiScope("scope1"),
-            new ApiScope("scope2"),
+                // Catalog specific scoppes
+                new ApiScope("catalog", "Catalog API"),
             };
 
         public static IEnumerable<Client> Clients =>
@@ -24,13 +24,13 @@ namespace MyStore.Services.Identity.API
             // m2m client credentials flow client
             new Client
             {
-                ClientId = "m2m.client",
+                ClientId = "client",
                 ClientName = "Client Credentials Client",
 
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
-                ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
+                AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
 
-                AllowedScopes = { "scope1" }
+                AllowedScopes = { "catalog", "openid", "profile" }
             },
 
             // interactive client using code flow + pkce
@@ -46,7 +46,7 @@ namespace MyStore.Services.Identity.API
                 PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
 
                 AllowOfflineAccess = true,
-                AllowedScopes = { "openid", "profile", "scope2" }
+                AllowedScopes = { "openid", "profile", "catalog" }
             },
             };
     }

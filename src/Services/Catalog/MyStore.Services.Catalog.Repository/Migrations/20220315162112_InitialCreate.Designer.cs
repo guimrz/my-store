@@ -12,7 +12,7 @@ using MyStore.Services.Catalog.Repository;
 namespace MyStore.Services.Catalog.Repository.Migrations
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20220311173711_InitialCreate")]
+    [Migration("20220315162112_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace MyStore.Services.Catalog.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("MyStore.Services.Catalog.Domain.Brand", b =>
+            modelBuilder.Entity("MyStore.Services.Catalog.Domain.BrandAggregate.Brand", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace MyStore.Services.Catalog.Repository.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<string>("SmallDescription")
+                    b.Property<string>("ShortDescription")
                         .HasMaxLength(512)
                         .HasColumnType("nvarchar(512)");
 
@@ -85,11 +85,6 @@ namespace MyStore.Services.Catalog.Repository.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -169,7 +164,7 @@ namespace MyStore.Services.Catalog.Repository.Migrations
 
             modelBuilder.Entity("MyStore.Services.Catalog.Domain.BrandAggregate.BrandCategory", b =>
                 {
-                    b.HasOne("MyStore.Services.Catalog.Domain.Brand", null)
+                    b.HasOne("MyStore.Services.Catalog.Domain.BrandAggregate.Brand", null)
                         .WithMany("Categories")
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -186,7 +181,7 @@ namespace MyStore.Services.Catalog.Repository.Migrations
 
             modelBuilder.Entity("MyStore.Services.Catalog.Domain.Product", b =>
                 {
-                    b.HasOne("MyStore.Services.Catalog.Domain.Brand", "Brand")
+                    b.HasOne("MyStore.Services.Catalog.Domain.BrandAggregate.Brand", "Brand")
                         .WithMany()
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -212,7 +207,7 @@ namespace MyStore.Services.Catalog.Repository.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("MyStore.Services.Catalog.Domain.Brand", b =>
+            modelBuilder.Entity("MyStore.Services.Catalog.Domain.BrandAggregate.Brand", b =>
                 {
                     b.Navigation("Categories");
                 });

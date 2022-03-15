@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyStore.Services.Catalog.Application.Commands;
 using MyStore.Services.Catalog.Application.Commands.Queries;
@@ -6,6 +7,7 @@ using MyStore.Services.Catalog.Application.Responses.Categories;
 
 namespace MyStore.Services.Catalog.API.Controllers
 {
+    [Authorize]
     [Route("categories")]
     public class CategoriesController : ControllerBase
     {
@@ -18,7 +20,7 @@ namespace MyStore.Services.Catalog.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(CategoryResponse[]), 200)]
-        public async Task<IActionResult> GetCategories([FromQuery]GetCategoriesQuery query)
+        public async Task<IActionResult> GetCategories([FromQuery] GetCategoriesQuery query)
         {
             var response = await _mediator.Send(query);
 
@@ -27,7 +29,7 @@ namespace MyStore.Services.Catalog.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(CategoryResponse), 201)]
-        public async Task<IActionResult> CreateCategory([FromBody]CreateCategoryCommand command)
+        public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryCommand command)
         {
             var response = await _mediator.Send(command);
 

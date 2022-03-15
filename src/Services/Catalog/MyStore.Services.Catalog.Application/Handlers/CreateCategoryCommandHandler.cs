@@ -20,7 +20,7 @@ namespace MyStore.Services.Catalog.Application.Handlers
 
         public async Task<CategoryResponse> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
-            Category category = new Category(request.Name, request.Description);
+            Category category = new Category(request.Name);
 
             category = await _repository.AddAsync(category, cancellationToken);
             await _repository.SaveChangesAsync(cancellationToken);

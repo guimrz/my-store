@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Tokens;
 using MyStore.Core.EntityFrameworkCore.Extensions;
 using MyStore.Core.EntityFrameworkCore.SqlServer.Extensions;
 using MyStore.Core.Mvc.Extensions;
@@ -31,7 +32,18 @@ try
 
     // Configure swagger
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerGen(options => 
+    {
+        options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+        {
+            In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            Description = "Please enter token",
+            Name = "Authorization",
+            Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+            BearerFormat = "JWT",
+            Scheme = "Bearer"
+        });
+    });
 
     // Configure service discovery
     builder.Services.AddServiceDiscovery(builder.Configuration);
@@ -52,6 +64,32 @@ try
     // Configure request validation
     builder.Services.AddRequestValidation(Assembly.Load("MyStore.Services.Catalog.Application"));
 
+    // Configure authentication
+    builder.Services.AddAuthentication("Bearer")
+        .AddJwtBearer("Bearer", options =>
+        {
+            options.Authority = "http://identity_service";
+            options.RequireHttpsMetadata = false;
+
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateAudience = false
+            };
+        });
+
+    // Configure authorization
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("ApiScope", policy =>
+        {
+            policy.RequireAuthenticatedUser();
+            policy.RequireClaim("scope", "catalog");
+        });
+    });
+
+    // Configure health checks
+    builder.Services.AddHealthChecks();
+
     var app = builder.Build();
 
     // Configure serilog for requests
@@ -70,12 +108,19 @@ try
     app.UseMiddleware<ExceptionMiddleware>();
 
     app.UseHttpsRedirection();
+
+    app.UseAuthentication();
     app.UseAuthorization();
-    app.MapControllers();
+
+    // Configure health checks
+    app.UseHealthChecks("/health/status");
+
+    app.MapControllers()
+        .RequireAuthorization("ApiScope");
 
     app.Run();
 }
-catch(Exception exception)
+catch (Exception exception)
 {
     Log.Fatal(exception, "Unhandled exception");
 }
