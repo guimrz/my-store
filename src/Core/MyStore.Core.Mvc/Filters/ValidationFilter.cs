@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using MyStore.Core.Mvc.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+#nullable disable
 namespace MyStore.Core.Mvc.Filters
 {
     public class ValidationFilter : IAsyncActionFilter

@@ -14,10 +14,10 @@ namespace MyStore.Core.ServiceDiscovery.Consul.Extensions
             services.Configure<ConsulClientConfiguration>(options => configuration.GetSection("ServiceDiscovery:Consul").Bind(options));
             services.TryAddSingleton<IConsulClientFactory, ConsulClientFactory>();
             services.TryAddSingleton((IServiceProvider sp) => sp.GetRequiredService<IConsulClientFactory>().CreateClient(Options.DefaultName));
-            
+
             // Service registration
             services.AddHostedService<AgentServiceRegistrationHostedService>();
-            services.TryAddTransient<AgentServiceRegistration>(serviceProvider => 
+            services.TryAddTransient<AgentServiceRegistration>(serviceProvider =>
             {
                 var serviceDiscoveryOptions = serviceProvider.GetRequiredService<IOptions<ServiceDiscoveryConfiguration>>()?.Value;
 
@@ -26,7 +26,17 @@ namespace MyStore.Core.ServiceDiscovery.Consul.Extensions
                     Address = serviceDiscoveryOptions?.Address,
                     Name = serviceDiscoveryOptions?.ServiceName,
                     ID = Guid.NewGuid().ToString(),
-                    Port = serviceDiscoveryOptions?.Port ?? 0
+                    Port = serviceDiscoveryOptions?.Port ?? 0,
+                    Checks = new[]
+                    {
+                        new AgentCheckRegistration
+                        {
+                            HTTP = $"{serviceDiscoveryOptions?.Address}/api/health/status",
+                            Notes = "Checks /health/status",
+                            Timeout = TimeSpan.FromSeconds(3),
+                            Interval = TimeSpan.FromSeconds(10)
+                        }
+                    }
                 };
             });
 
