@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>bec0637b-e984-4c18-a7cf-02cce2b7ae20</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..</DockerfileContext>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.3" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+		<PackageReference Include="Serilog" Version="2.10.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Core\MyStore.Core.EntityFrameworkCore.SqlServer\MyStore.Core.EntityFrameworkCore.SqlServer.csproj" />
+		<ProjectReference Include="..\..\..\Core\MyStore.Core.Mvc\MyStore.Core.Mvc.csproj" />
+		<ProjectReference Include="..\..\..\Core\MyStore.Core.ServiceDiscovery.Consul\MyStore.Core.ServiceDiscovery.Consul.csproj" />
+		<ProjectReference Include="..\..\..\Core\MyStore.Core.ServiceDiscovery\MyStore.Core.ServiceDiscovery.csproj" />
+		<ProjectReference Include="..\MyStore.Services.Basket.Application\MyStore.Services.Basket.Application.csproj" />
+	</ItemGroup>
+
+</Project>
